@@ -4,10 +4,12 @@ package DIT952;
 //import DIT952.polygons.polygon.IDrawablePolygon;
 //import DIT952.polygons.polygon.PolygonFactory;
 
+
 /* By commenting out the imports above, and instead importing the adapter package,
  * we effectively switch to using the DIT952.shapes package.
  */
 import DIT952.polygon.*;
+import DIT952.macro.*;
 
 public class DrawPolygons {
 
@@ -29,7 +31,11 @@ public class DrawPolygons {
         polygons.addListener(view);
         PolygonController controller = new PolygonController(polygons, view);
 
-        polygons.animate();
+        Macro macro = new Macro();
+//        macro.addTransform(new ExampleTransform());
+        macro.addTransform(p -> p.rotate(Math.PI/6));
+        macro.addTransform(p -> p.translate(10, 7));
+        polygons.animate(macro);
 
     }//main
 

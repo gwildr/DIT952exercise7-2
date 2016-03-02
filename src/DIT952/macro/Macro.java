@@ -1,13 +1,12 @@
 package DIT952.macro;
 
 import DIT952.polygon.*;
-
 import java.util.*;
 
 /**
  * Created by Niklas on 2016-03-02.
  */
-public class Macro {
+public class Macro implements Transform {
     private List<Transform> transforms = new ArrayList<>();
 
     public void addTransform(Transform transform){

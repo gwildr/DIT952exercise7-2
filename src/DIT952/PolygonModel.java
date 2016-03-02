@@ -1,5 +1,6 @@
 package DIT952;
 
+import DIT952.macro.Macro;
 import DIT952.polygon.IDrawablePolygon;
 
 import javax.swing.*;
@@ -32,15 +33,22 @@ public class PolygonModel extends JComponent {
         }
 
     }
-    private void update(){
-        ticker++;
-        int value = direction ? 10 : -10;
-        translate(value, value);
-        notifyListeners();
-        if (ticker > 10) {
-            direction = !direction;
-            ticker = 0;
+
+    private void transformPolygons(Macro macro){
+        for (IDrawablePolygon p: polygons){
+            macro.transform(p);
         }
+    }
+    private void update(Macro macro){
+        ticker++;
+//        int value = direction ? 10 : -10;
+//        translate(value, value);
+        transformPolygons(macro);
+        notifyListeners();
+//        if (ticker > 10) {
+//            direction = !direction;
+//            ticker = 0;
+//        }
     }
 
     private void notifyListeners(){
@@ -48,11 +56,11 @@ public class PolygonModel extends JComponent {
             l.actOnUpdate();
     }
 
-    public void animate(){
+    public void animate(Macro macro){
         try {
             while (true) {
                 Thread.sleep(500);
-                update();
+                update(macro);
             }
         } catch (InterruptedException e) {}
     }
