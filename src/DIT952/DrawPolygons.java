@@ -32,7 +32,7 @@ public class DrawPolygons {
         PolygonController controller = new PolygonController(polygons, view);
 
         Macro macro = new Macro();
-//        macro.addTransform(new ExampleTransform());
+        macro.addTransform(new ExampleTransform());
         macro.addTransform(p -> p.rotate(Math.PI/6));
         macro.addTransform(p -> p.translate(10, 7));
         polygons.animate(macro);
